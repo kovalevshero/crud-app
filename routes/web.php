@@ -27,6 +27,7 @@ Route::get('/token', function () {
 
 Route::get('/employee', [EmployeeController::class, 'index']);
 Route::post('/employee', [EmployeeController::class, 'create']);
+Route::post('/employee/update', [EmployeeController::class, 'update']);
 Route::get('getEmployee', function (Request $request) {
     if ($request->ajax()) {
         $data = Employee::latest()->get();

@@ -23,4 +23,18 @@ class EmployeeController extends Controller
 
         return redirect('/employee')->with('success', 'Berhasil menambahkan data!');
     }
+
+    public function update(Request $request)
+    {
+        $id = $request->id;
+        $name = $request->name;
+        $email = $request->email;
+
+        $employees = Employee::find($id);
+        $employees->name = $name;
+        $employees->email = $email;
+        $employees->save();
+
+        return redirect('/employee')->with('success', 'Berhasil mengubah data!');
+    }
 }

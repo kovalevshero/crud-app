@@ -59,6 +59,38 @@
                 </div>
             </form>
         </div>
+        
+        {{-- Modal edit --}}
+        <div class="modal fade" id="modal-edit">
+            <form action="/employee/update" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="id" class="form-control edit-id" value="">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ubah Data</h4>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group col-md-12 col-xs-12">
+                                <label>Nama</label>
+                                <input type="text" name="name" class="form-control edit-name">
+                            </div>
+                            <div class="form-group col-md-12 col-xs-12">
+                                <label>Email</label>
+                                <input type="text" name="email" class="form-control edit-email">
+                            </div>            
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-outline-light bg-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-outline-light bg-success swalDefaultSuccess" id="process-edit-employee" data-bs-dismiss="modal">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -93,6 +125,17 @@
                         },
                     },
                 ]
+            })
+
+            $(document).on('click', '.btn-edit', function() {
+                let id = $(this).data('id')
+                let name = $(this).data('name')
+                let email = $(this).data('email')
+
+                $('#modal-edit .edit-id').val(id)
+                $('#modal-edit .edit-name').val(name)
+                $('#modal-edit .edit-email').val(email)
+                $('#modal-edit').modal('show')
             })
         })
     </script>
