@@ -7,6 +7,13 @@ use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
+    public function index()
+    {
+        $employees = Employee::all();
+
+        return view('index', ['employee' => $employees]);
+    }
+
     public function create(Request $request)
     {
         $employees = new Employee();
